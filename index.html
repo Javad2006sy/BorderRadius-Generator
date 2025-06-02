@@ -8,22 +8,28 @@
 </head>
 <body>
     <section class="container">
-      <!-- Visualizer -->
+      <!-- Visualizer (شکل خروجی) -->
       <div class="visualizer" id="visualizer">
+        <!-- Horizontal Pointers (پوینتر های افقی) -->
           <div class="visualizer_pointer" data-border="0-0" data-movement="horizental"></div>
           <div class="visualizer_pointer" data-border="0-1" data-movement="horizental"></div>
           <div class="visualizer_pointer" data-border="0-2" data-movement="horizental"></div>
           <div class="visualizer_pointer" data-border="0-3" data-movement="horizental"></div>
+
+          <!-- Vertical Pointers (پوینتر های عمودی) -->
           <div class="visualizer_pointer" data-border="1-0" data-movement="vertical"></div>
           <div class="visualizer_pointer" data-border="1-1" data-movement="vertical"></div>
           <div class="visualizer_pointer" data-border="1-2" data-movement="vertical"></div>
           <div class="visualizer_pointer" data-border="1-3" data-movement="vertical"></div>
       </div>
 
-      <!-- Output -->
+      <!-- Output (کد خروجی) -->
       <div class="output-section">
+          <!-- Code (کد) -->
           <span class="output-code" id="code">10% 10% 10% 10% / 10% 10% 10% 10%</span>
-          <a href="" class="output-button" id="copy">Copy</a>
+
+          <!-- Copy Button (دکمه کپی) -->
+          <a href="javascript:void(0)" class="output-button" id="copy">Copy</a>
       </div>
 
       <script src="script.js"></script>
