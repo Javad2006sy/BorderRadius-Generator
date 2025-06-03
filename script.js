@@ -7,8 +7,10 @@ let isDragging = false;
 let activeElement = null;
 let code = '10% 10% 10% 10% / 10% 10% 10% 10%';
 
+// Invoking `copyCode` function when the copy button is clicked
 outputButton.addEventListener('click', (e) => {copyCode(e)});
 
+// Adding mouse events to each pointer
 pointers.forEach((pointer) => {
     pointer.addEventListener('mousedown', () => {
         activeElement = pointer;
@@ -16,27 +18,36 @@ pointers.forEach((pointer) => {
     });
 });
 
+// Reseting variables when mouse button is released
 document.addEventListener('mouseup', () => {
     isDragging = false;
     activeElement = null;
 });
 
+// Calculating pointer's position and output code when a pointer is being dragged
 document.addEventListener('mousemove', (e) => {
     if (isDragging) {
+        // Calculating pointer's position
         const position = getPosition(e, activeElement);
-        code = updateCode(position);
+        
+        // Calculating output code based on pointer's position
+        code = updateCode(position, activeElement);
 
+        // Updating pointer and code
         activeElement.style.setProperty('--pointer-place', `${position}%`);
         visualizer.style.setProperty('--border-code', code);
         outputCode.innerText = code;
     };
 });
 
+
+// Function to calculate pointer's position
 function getPosition(e, element) {
     const movement = element.getAttribute('data-movement');
     const direction = element.getAttribute('data-border').split('-')[1];
     let pos;
 
+    // Horizontal pointer
     if (movement == 'horizental') {
         const visualizerLeftDistance = visualizer.getBoundingClientRect().left;
         pos = Math.floor(((e.clientX - visualizerLeftDistance) / visualizer.clientWidth) * 100);
@@ -46,6 +57,7 @@ function getPosition(e, element) {
         };
     };
 
+    // Vertical pointer
     if (movement == 'vertical') {
         const visualizerTopDistance = visualizer.getBoundingClientRect().top;
         pos = Math.floor(((e.clientY - visualizerTopDistance) / visualizer.clientHeight) * 100);
@@ -61,17 +73,21 @@ function getPosition(e, element) {
     return pos;
 }
 
-function updateCode(pos) {
-    let codeAddress = activeElement.getAttribute('data-border').split('-');
+
+// Function to update output code based on a pointer position
+function updateCode(pos, pointer) {
+    let codeAddress = pointer.getAttribute('data-border').split('-');
     let codePart = code.split(' / ');
-    let targetPart = codePart[Number(codeAddress[0])].split(' ');
+    let targetPart = codePart[parseInt(codeAddress[0])].split(' ');
     
-    targetPart[Number(codeAddress[1])] = `${pos}%`;
-    codePart[Number(codeAddress[0])] = targetPart.join(' ');
+    targetPart[parseInt(codeAddress[1])] = `${pos}%`;
+    codePart[parseInt(codeAddress[0])] = targetPart.join(' ');
     
     return codePart.join(' / ');
 }
 
+
+// Function to copy the output code on user's clipboard
 function copyCode(e) {
     e.preventDefault();
     navigator.clipboard.writeText(code);
