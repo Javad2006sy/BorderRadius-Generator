@@ -69,8 +69,11 @@ body {
     z-index: -1;
 }
 
+/* Pointer styles (استایل های پوینتر) */
 .visualizer .visualizer_pointer {
     --pointer-place: 10%;
+    /* The `pointer-place` variable is updated via JavaScript
+    and its value is set to one of the four pointer properties: `top`, `right`, `bottom`, `left` */
 
     width: 15px;
     height: 15px;
@@ -82,6 +85,7 @@ body {
     z-index: 1;
 }
 
+/* Pointer hover effect */
 .visualizer .visualizer_pointer::before {
     content: '';
     width: 100%;
@@ -102,53 +106,63 @@ body {
     scale: 1.8;
 }
 
-.visualizer .visualizer_pointer[data-movement="vertical"][data-border="1-3"] {
-    bottom: var(--pointer-place);
-    left: 0;
-    translate: -50% 50%;
-}
-
-.visualizer .visualizer_pointer[data-movement="vertical"][data-border="1-2"] {
-    bottom: var(--pointer-place);
-    right: 0;
-    translate: 50% 50%;
-}
-
+/* Setting position of top-left vertical pointer */
 .visualizer .visualizer_pointer[data-movement="vertical"][data-border="1-0"] {
     top: var(--pointer-place);
     left: 0;
     translate: -50% -50%;
 }
 
+/* Setting position of top-right vertical pointer */
 .visualizer .visualizer_pointer[data-movement="vertical"][data-border="1-1"] {
     top: var(--pointer-place);
     right: 0;
     translate: 50% -50%;
 }
 
-.visualizer .visualizer_pointer[data-movement="horizental"][data-border="0-3"] {
-    bottom: 0;
-    left: var(--pointer-place);
-    translate: -50% 50%;
-}
-
-.visualizer .visualizer_pointer[data-movement="horizental"][data-border="0-2"] {
-    bottom: 0;
-    right: var(--pointer-place);
+/* Setting position of bottom-right vertical pointer */
+.visualizer .visualizer_pointer[data-movement="vertical"][data-border="1-2"] {
+    bottom: var(--pointer-place);
+    right: 0;
     translate: 50% 50%;
 }
 
+/* Setting position of bottom-left vertical pointer */
+.visualizer .visualizer_pointer[data-movement="vertical"][data-border="1-3"] {
+    bottom: var(--pointer-place);
+    left: 0;
+    translate: -50% 50%;
+}
+
+/* Setting position of top-left horizontal pointer */
 .visualizer .visualizer_pointer[data-movement="horizental"][data-border="0-0"] {
     top: 0;
     left: var(--pointer-place);
     translate: -50% -50%;
 }
 
+/* Setting position of top-right horizontal pointer */
 .visualizer .visualizer_pointer[data-movement="horizental"][data-border="0-1"] {
     top: 0;
     right: var(--pointer-place);
     translate: 50% -50%;
 }
+
+/* Setting position of bottom-right horizontal pointer */
+.visualizer .visualizer_pointer[data-movement="horizental"][data-border="0-2"] {
+    bottom: 0;
+    right: var(--pointer-place);
+    translate: 50% 50%;
+}
+
+/* Setting position of bottom-left horizontal pointer */
+.visualizer .visualizer_pointer[data-movement="horizental"][data-border="0-3"] {
+    bottom: 0;
+    left: var(--pointer-place);
+    translate: -50% 50%;
+}
+
+/* Output Section */
 
 .output-section {
     display: flex;
@@ -156,6 +170,7 @@ body {
     align-items: center;
 }
 
+/* Output code box styles */
 .output-section .output-code {
     background-color: var(--light-text);
     color: var(--dark-text);
@@ -164,6 +179,7 @@ body {
     border-radius: 10px 0 0 10px;
 }
 
+/* Output copy button styles */
 .output-section .output-button {
     height: 100%;
     padding: 10px;
